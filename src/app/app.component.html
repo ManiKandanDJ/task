@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
+      <form [formGroup]="SignupForm">
+        <ng-container formArrayName="details">
+          <ng-container *ngFor="let info of details.controls; let i = index">
+            <div [formGroup]="info">
+              <div>
+                <label>name</label>
+                <input type="text" formControlName="name" />
+              </div>
+              <div>
+                <label>email</label>
+                <input type="text" formControlName="email" />
+              </div>
+              <div>
+                <label>mobile number</label>
+                <input type="tel" formControlName="mobile" />
+              </div>
+            </div>
+          </ng-container>
+        </ng-container>
+      </form>
+      <button class="btn btn-primary" (click)="addApp()" type="button">
+        ADD
+      </button>
+    </div>
+    <button class="btn btn-primary" type="button" (click)="onSubmit()">
+      Submit
+    </button>
+    <div *ngIf="infoEnable">{{ this.SignupForm.value | json }}</div>
+  </div>
+</div>
